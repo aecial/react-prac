@@ -1,7 +1,12 @@
+// { items: [] heading: string}
+// using interface we can define the shape or the interface of an object
 import { useState } from "react";
-
-function ListGroup() {
-  let items = ["Capas", "Concepcion", "Bamban", "San Vicente", "Cristo Rey"];
+interface Props {
+  items: string[];
+  heading: string;
+}
+function ListGroup({items, heading}: Props) {
+  
   // Hook
   const [selectedIndex, setSelectedIndex] = useState(-1);
   // Event Handler
@@ -9,7 +14,7 @@ function ListGroup() {
 
   return (
     <>
-      <h2>Lezgoooo!</h2>
+      <h2>{heading}</h2>
       <ul className="list-group">
         {items.length === 0 && <p>No item found</p>};
         {items.map((item, index) => (
