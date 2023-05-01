@@ -1,7 +1,11 @@
 import Alert from "./components/Alert";
 import ListGroup from "./components/ListGroup";
+import Button from "./components/Button";
+import { useState } from "react";
+import { flushSync } from "react-dom";
 
 function App() {
+  const [alertVisible, setAlertVisibile] =useState(false);
   let Places = ["Capas", "Concepcion", "Bamban", "San Vicente", "Cristo Rey"];
   let Friends = ["Nonac", "Andrei", "Anne", "Marie", "Joe","Christopher"];
   const handleSelectItem = (item: string) => {
@@ -9,10 +13,12 @@ function App() {
   }
   return (
     <div>
-      <Alert>
-        <h1>Wazzup</h1>
-        <p>nomu nomu</p>
-      </Alert>
+      {alertVisible && <Alert onClose={() => setAlertVisibile(false)}>
+        Alert
+      </Alert>}
+      <Button  onClick={() => setAlertVisibile(true)}>
+        Submit
+      </Button>
       <ListGroup items={Places} heading="Places" onSelectItem={handleSelectItem}/>
       <ListGroup items={Friends} heading="Friends" onSelectItem={handleSelectItem}/>
     </div>
